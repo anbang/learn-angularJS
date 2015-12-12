@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body ng-controller="CartController">
+<p>总金额</p><input type="text" ng-change="change()" ng-model="total">
+<div ng-controller="DetailController">
+    <table class="table table-responsive">
+        <tr>
+            <td>商品名称</td>
+            <td>商品价格</td>
+            <td>商品数量</td>
+        </tr>
+        <tr ng-repeat="item in items">
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td><input type="text" ng-change="change()" ng-model="item.amount"></td>
+        </tr>
+    </table>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+
+    angular.module('zfpx',[]);//定义一个模块
+    angular.module('zfpx').controller('CartController',function($scope){
+        $scope.total = 10;
+    });
+    angular.module('zfpx').controller('DetailController',function($scope){
+        $scope.items=[
+            {name:'F35',amount:1,price:10}
+        ]
+    });
+</script>
+<html>

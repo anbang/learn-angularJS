@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red{
+            border:1px solid red;
+        }
+        .big{
+            width:100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+<div ng-class="{red:red,big:big}" ng-mouseover="red=!red;big=!big" ng-mouseout="red=!red;big=!big">
+    hello
+</div>
+</body>
+<script src="http://7xjf2l.com2.z0.glb.qiniucdn.com/angular.js"></script>
+<html>

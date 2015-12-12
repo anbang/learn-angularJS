@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx2">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body  >
+<div ng-controller="MyController2">
+    名称:
+    <input type="text" ng-model="username">
+    <button ng-click="sayHello()">打招呼</button>
+    <hr>
+    {{greeting}}
+    {{username}}
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+
+    angular.module('zfpx2',[]);//定义一个模块
+
+    angular.module('zfpx2').controller('MyController2',function($scope,$timeout){
+        $scope.username = 'zfpx';
+        $scope.sayHello = function() {
+            $scope.greeting= 'Hello ' + $scope.username + '!';
+        };
+        $scope.$watch('username',function(){
+            console.log($scope);
+            console.log(arguments);
+            console.log($scope.username);
+        });
+        $timeout(function(){
+            $scope.username = 'win10';
+            //$scope.$apply("");
+        },3000);
+    });
+</script>
+<html>

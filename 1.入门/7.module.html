@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx2">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-init="age=6" >
+<div ng-controller="MyController">
+    {{name}}
+    <div ng-controller="MyController2">
+        {{name}}
+        {{age}}
+    </div>
+</div>
+<div ng-controller="MyController">
+    {{name}}
+    <div ng-controller="MyController2">
+        {{name}}
+        {{age}}
+    </div>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('zfpx1',[]);//定义一个模块
+    angular.module('zfpx1').controller('MyController',function($scope){
+        console.log($scope);
+        $scope.name='zfpx1';
+    });
+
+    angular.module('zfpx2',['zfpx1']);//定义一个模块
+
+    angular.module('zfpx2').controller('MyController2',function($scope){
+        console.log($scope);
+        $scope.name='zfpx2';
+    });
+</script>
+<html>

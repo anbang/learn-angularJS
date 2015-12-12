@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div ng-controller="PhoneController">
+    请输入关键字 <input type="text" ng-model="query">
+    <ul>
+        <li ng-repeat="phone in phones | filter:query">
+            {{phone.name}}
+            <p>{{phone.snippet}}</p>
+        </li>
+    </ul>
+</div>
+
+</body>
+<script src="http://7xjf2l.com2.z0.glb.qiniucdn.com/angular.js"></script>
+<script>
+  angular.module('zfpx',[]);
+  angular.module('zfpx').controller('PhoneController',function($scope){
+      $scope.phones=[{name:'iphone6',snippet:'iphone is good'},{name:'xiaomi',snippet:'xiaomi is bad'}];
+  });
+</script>
+<html>

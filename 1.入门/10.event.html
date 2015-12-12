@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.css"/>
+</head>
+
+<style>
+
+</style>
+<body ng-controller="CartController">
+<p>总金额</p><input type="text" ng-change="change()" ng-model="total"/>
+<div ng-controller="DetailController">
+    <table class="table table-responsive">
+        <tr>
+            <td>商品名称</td>
+            <td>商品价格</td>
+            <td>商品数量</td>
+        </tr>
+        <tr ng-repeat="item in items">
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td><input type="text" ng-model="item.amount" ng-change="change()"/></td>
+        </tr>
+    </table>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('zfpx',[]);
+
+    angular.module('zfpx').controller('DetailController', function ($scope,$timeout) {
+        $scope.items=[
+            {name:'F35',amount:1,price:10},
+            {name:'F15',amount:1,price:10}
+        ]
+        $scope.change= function () {
+
+            $scope.$emit('changeMount',$scope.items);
+        }
+        $scope.$on('changePrice', function (err,data) {
+            console.log(data);
+            $scope.items[0].amount=data/$scope.items[0].price;
+
+        })
+    });
+    angular.module('zfpx').controller('CartController', function ($scope,$timeout) {
+        $scope.total=20;
+        $scope.change= function () {
+            $scope.$broadcast('changePrice',$scope.total);
+        }
+        $scope.$on('changeMount', function (err,data) {
+            $scope.total=data[0].amount*data[0].price;
+        })
+    });
+</script>
+</html>
